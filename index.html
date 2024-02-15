@@ -17,6 +17,11 @@
 	
 	<!-- Bootstrpa Icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+	    <!-- Bootstrap JS (optional) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	
 	<!-- FontAwesome JS -->
     <script defer src="assets/fontawesome/js/all.js"></script>
@@ -26,11 +31,26 @@
 
 	<!-- Theme CSS -->  
 	<link id="theme-style" rel="stylesheet" href="assets/css/shine.css">
+	<!--ReactJS-->
+	<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!--Angular-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<style>
+        .image-container {
+            margin-bottom: 20px;
+        }
+        .flag-counter,
+        .analog-clock {
+            flex: 1;
+            margin-right: 20px; /* Adjust the space between the elements */
+        }
+    </style>
 
 </head> 
 
 
-<body class="light-mode">
+<body class="light-mode" ng-app="converterApp" ng-controller="ConverterController">
 	
 	<div class="container-fluid">
 			
@@ -179,17 +199,83 @@
 											</div>
 										</div><!--//item-->
 
-											<div style ="text-align: justify;text-justify: inter-word;"class="item">
+										<div style ="text-align: justify;text-justify: inter-word;"class="item">
 											<h4 class="item-heading"><i class="item-icon bi bi-square-fill me-2"></i>POLY-Y-FARM WORK</h4>
 											<div class="item-desc">
 												Worked on designing a prototype that performs multiple tasks like ploughing, watering, seeding, by monitoring all the soil requirements through sensors of the respective kind for an all-India wide competition conducted by AICTE on the theme of Empowerment of villages through Technology.
 											</div>
-											</div><!--//item-->
-						
-									</section><!--//Project-section-->
+										</div><!--//item-->
 
-										
-									
+										<hr>
+
+										<div class="analog-clock">
+
+
+											<canvas id="analog-clock" width="100" height="100" style="background-color:#999"></canvas>
+												<script src="https://waph-uc.github.io/clock.js"></script>
+												<script>
+													var canvas = document.getElementById("analog-clock");
+													var ctx = canvas.getContext("2d");
+													var radius = canvas.height/2;
+													ctx.translate(radius, radius);
+													radius = radius*0.90
+													setInterval(drawClock, 1000);
+
+													function drawClock(){
+														drawFace(ctx, radius);
+														drawNumbers(ctx,radius);
+														drawTime(ctx, radius);	
+													}
+													// if (document.cookie.indexOf("username") <0 ){
+													// 		alert('Welcome to the Website');
+													// 		document.cookie="username = Dasarisu";
+																
+													// }
+													// else{
+															
+													// 		alert("Welcome Back " +document.cookie);
+													// 		var curDate = new Date();
+													// 		document.cookie = "Dasarisu, Your last visit was "+ curDate.toUTCString();
+													// }
+													// var curDate = new Date();
+													// document.cookie = "Dasarisu, Your last visit was "+ curDate.toUTCString();
+													    function setOrGetUsername() {
+												            var username = document.cookie.replace(/(?:(?:^|.*;\s*)username\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+												
+            													if (!username) {
+												                // If username is not found in the cookie, prompt the user to enter it
+												                var newUsername = prompt("Welcome! Please enter your username:", "YOURusername");
+												                if (newUsername !== null && newUsername !== "") {
+												                    document.cookie = "username=" + newUsername + "; max-age=" + (365 * 24 * 60 * 60); // Store cookie for 1 year
+												                    return newUsername;
+												                }
+												            } else {
+												                return username;
+												            }
+												        }
+												
+												        function displayWelcomeMessage() {
+												            var username = setOrGetUsername();
+												            var currentDate = new Date();
+												            var lastVisit = document.cookie.replace(/(?:(?:^|.*;\s*)lastVisit\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+												
+            													if (username) {
+												                if (lastVisit) {
+												                    // If username and last visit time are found in the cookie, display welcome back message with last visit date/time
+												                    var lastVisitDate = new Date(lastVisit);
+												                    alert("Welcome back, " + username + "! Your last visit was " + lastVisitDate.toLocaleString('en-US', {timeZone: 'America/New_York'}));
+												                } else {
+												                    // If only username is found in the cookie, update the last visit time
+												                    document.cookie = "lastVisit=" + currentDate.toUTCString() + "; max-age=" + (365 * 24 * 60 * 60); // Store cookie for 1 year
+												                    alert("Welcome, " + username + "!");
+                													}
+            													}
+        												}
+
+        											displayWelcomeMessage();
+												</script>
+										</div>
+									</section><!--//Project-section-->	
 								</div><!--//col-8-->
 								<div class="col-12 col-lg-4 ps-lg-4">
 									
@@ -332,45 +418,51 @@
 									<hr>
 
 									<section class="resume-lang-section resume-section">
-										<div>
-											<canvas id="analog-clock" width="100" height="100" style="background-color:#999"></canvas>
-												<script src="https://waph-uc.github.io/clock.js"></script>
-												<script>
-													var canvas = document.getElementById("analog-clock");
-													var ctx = canvas.getContext("2d");
-													var radius = canvas.height/2;
-													ctx.translate(radius, radius);
-													radius = radius*0.90
-													setInterval(drawClock, 1000);
 
-													function drawClock(){
-														drawFace(ctx, radius);
-														drawNumbers(ctx,radius);
-														drawTime(ctx, radius);	
-													}
-													function fetchAndDisplayJoke(){
-													$.get("https://v2.jokeapi.dev/joke/Any?type=single",function(result){
-														$("#response").html("Joke of the day: " + result.joke);});
-													}
-													
+										<div class="image-container">
+											
+											<img src="" alt="Random Image" id="randomImage" class="img-fluid">
+											<h6 style="text-align: center;">Random Image generator</h4>
+											<script>
+												// for random image generator
+													function fetchRandomImage() {
+           											 $.get('https://picsum.photos/400/300', function() {
+                										const imageUrl = 'https://picsum.photos/400/300?' + Math.random(); // Adding a random query parameter to force image refresh
+                									$('#randomImage').attr('src', imageUrl);
+            											});
+        											}
 
-												</script>
+        											// Fetch a new random image every 2 seconds
+        											
+        											$(document).ready(function() {
+        											    fetchRandomImage(); // Fetch the first image immediately
+        											    setInterval(fetchRandomImage, 3500); // Fetch a new image every 2 seconds
+        											});
+											</script>
 										</div>
-
+										<hr>
 										<div>
-											<a href="https://info.flagcounter.com/Q2x4"><img src="https://s01.flagcounter.com/count/Q2x4/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+												<h6 style="text-align: center;">USD to INR Converter</h6>
+										        <input type="number" ng-model="usd" placeholder="Enter USD amount" ng-change="convertToINR()" style="width: 100px; text-align: center; margin-left: 50px;" />
+        										<label>INR: {{ inr }}</label>
 
-										</div>
+        										    <script>
+        												// Define the Angular app module
+        												var app = angular.module('converterApp', []);
+
+        												// Define the Angular controller
+        												app.controller('ConverterController', function($scope) {
+            												$scope.usd = 0;
+            												$scope.inr = 0;
+
+            												$scope.convertToINR = function() {
+            												    $scope.inr = $scope.usd * 83; // Assuming 1 USD = 83 INR
+            												};
+        												});
+    												</script>
+        								</div>
 
 									</section>
-									
-									
-
-
-
-									
-									
-									
 								</div><!--//col-side-->
 							</div><!--//row-->
 					    </div><!--//resume-body-->
@@ -385,9 +477,15 @@
 	
 	<footer class="footer text-center py-4">
 		<!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+		<div><a href="https://info.flagcounter.com/Q2x4"><img src="https://s01.flagcounter.com/count/Q2x4/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a></div>
 		<div id="response" ></div>
 		<div  id="digital-clock"></div>
 				<script>
+
+						function fetchAndDisplayJoke(){
+							$.get("https://v2.jokeapi.dev/joke/Any?type=single",function(result){
+							$("#response").html("Joke of the day: " + result.joke);});
+						}
 						function displayTime(){
 						document.getElementById('digital-clock').innerHTML = "Current time: " + new Date();}
 						setInterval(displayTime, 500);
